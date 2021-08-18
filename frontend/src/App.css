@@ -1,0 +1,46 @@
+div[aria-labelledby="setting"] {
+  right: 0 !important;
+  left: auto !important;
+}
+
+.fs-7 {
+  font-size: 0.9rem;
+}
+
+.fs-8 {
+  font-size: 0.8rem;
+}
+
+.rotate-90 {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  color: #555;
+  user-select: none;
+}
+
+.card_box {
+  cursor: pointer;
+  transition: all ease 1s;
+}
+
+.card_box:hover {
+  box-shadow: 8px 17px 92px -7px rgba(171, 171, 171, 1);
+  -webkit-box-shadow: 8px 17px 92px -7px rgba(171, 171, 171, 1);
+  -moz-box-shadow: 8px 17px 92px -7px rgba(171, 171, 171, 1);
+}
+
+.react-toast-notifications__container {
+  z-index: 10000 !important;
+}
