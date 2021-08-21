@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { userAuthReducer } from "./reducers/authReducers";
 import {
+  createProjectReducer,
   donationReducer,
   projectListReducer,
 } from "./reducers/projectReducers";
@@ -11,6 +12,7 @@ const reducer = combineReducers({
   user: userAuthReducer,
   projects: projectListReducer,
   donation: donationReducer,
+  createProject: createProjectReducer
 });
 
 const intialState = {

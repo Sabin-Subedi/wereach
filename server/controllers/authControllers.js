@@ -22,7 +22,7 @@ export const loginUser = async (req, res) => {
             name: user.name,
             email: user.email,
             avatar: user.avatar,
-            isVerified: user.isVerified,
+            isAdmin: user.isAdmin,
           },
           token: jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
             expiresIn: "12h",
@@ -68,7 +68,7 @@ export const registerUser = async (req, res) => {
           email: newUser.email,
           date: newUser.date,
           avatar: newUser.avatar,
-          isVerified: newUser.isVerified,
+          isAdmin: newUser.isAdmin,
         },
         token: jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
           expiresIn: "12h",
@@ -104,6 +104,7 @@ export const getUserData = async (req, res) => {
           name: user.name,
           email: user.email,
           avatar: user.avatar,
+          isAdmin: user.isAdmin,
         },
       });
     }

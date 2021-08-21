@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import { logout } from "../actions/authActions";
+import { category } from "../constants/data";
 import Avatar from "./Avatar";
 
 function NavBar() {
@@ -15,32 +16,54 @@ function NavBar() {
   };
 
   return (
-    <Navbar className="mb-5" bg="white" expand="lg" sticky="top">
+    <Navbar className="mb-5" bg="white" expand="lg" fixed="top">
       <Container>
-        <Navbar.Brand href="/" className="me-auto text-success text-uppercase ">
-          civics
-        </Navbar.Brand>
+        <LinkContainer to="/">
+          <Navbar.Brand className="me-auto text-success text-uppercase ">
+            civics
+          </Navbar.Brand>
+        </LinkContainer>
         <Nav className="ms-auto align-middle">
           <NavDropdown
+          variant="success"
             className="mx-2"
             title="Projects"
             id="basic-nav-dropdown"
             align="end"
           >
-            <NavDropdown.Item href="#action/3.1">Covid</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Development Work
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Health</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Animal</NavDropdown.Item>
+            {category && category.map((cate) => (
+              <LinkContainer to={`/discover?category=${cate.replace(/\s+/g, '').toLowerCase()}`}>
+
+                <NavDropdown.Item >{cate}</NavDropdown.Item>
+              </LinkContainer>
+
+            ))}
+            
           </NavDropdown>
           {userInfo ? (
+            <>
             <div className="d-flex align-items-center">
+            {userInfo.isAdmin && <NavDropdown
+                className="text-whiterounded-circle text-white dropdown"
+                id="setting"
+                menuVariant="light"
+                title={`Admin`}
+              >
+                <LinkContainer to='/admin/dashboard'>
+                <NavDropdown.Item>
+                  <i className="fas fa-columns me-2"></i>Dashboard
+                </NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>}
+
+
               <LinkContainer to="/create/project">
-                <Button variant="outline-success mx-2 me-4">
+                <Button variant="outline-success mx-2 ">
                   Start Project
                 </Button>
               </LinkContainer>
+              
+              
               <p className="align-middle mb-0 mx-2">{userInfo.name}</p>
               <Avatar source={userInfo.avatar} desc={userInfo.name} />
 
@@ -50,10 +73,11 @@ function NavBar() {
                 menuVariant="light"
               >
                 <NavDropdown.Item onClick={logoutHandler}>
-                  <i className="fas fa-sign-out-alt mr-2"></i>Logout
+                  <i className="fas fa-sign-out-alt me-2"></i>Logout
                 </NavDropdown.Item>
               </NavDropdown>
             </div>
+              </>
           ) : (
             <>
               <LinkContainer to="/login">

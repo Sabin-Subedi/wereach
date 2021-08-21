@@ -15,6 +15,9 @@ const projectSchema = mongoose.Schema(
     videoLink: {
       type: String,
     },
+    imageLink: {
+      type: String,
+    },
     category: {
       type: String,
 
@@ -30,6 +33,7 @@ const projectSchema = mongoose.Schema(
         "Protest",
       ],
     },
+    location: { type: String },
     openedFor: {
       type: Array,
     },

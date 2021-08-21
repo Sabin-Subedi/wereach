@@ -44,3 +44,54 @@ div[aria-labelledby="setting"] {
 .react-toast-notifications__container {
   z-index: 10000 !important;
 }
+
+.progress {
+  height: 0.4rem;
+  background-color: #eaf3f1;
+}
+
+.error_focus:focus {
+  box-shadow: 0 0 0 0.25rem rgb(255 0 0 /25%);
+}
+
+.error_checkbox[type=checkbox]{
+  border-color: red !important;
+}
+
+.hero_wrapper{
+  min-height: 90vh;
+  position: relative;
+}
+
+.hero_banner{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('./bg.png');
+background-size: cover;
+}
+
+.hero_content{
+  height: 100% !important;
+  width: 50%;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.modal_view{
+  height: 80vh;
+}
+
+.bg-tan {
+  background-color: #fbf8f6;
+}
+
+.dropdown .active {
+  background-color: #198754 !important;
+}
+
+.hover-green:hover{
+  color: #198754;
+}

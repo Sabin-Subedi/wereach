@@ -20,6 +20,10 @@ const userSchema = mongoose.Schema(
       type: String,
       default: `https://storage.googleapis.com/hello-de203.appspot.com/image-1622783412476.jpg`,
     },
+    isAdmin:{
+      type: Boolean,
+      default: false,
+    }
   },
   {
     timestamps: true,

@@ -1,11 +1,11 @@
 import Project from "../models/projectModel.js";
 
-// ! @route POST /project/getAll
+// ! @route POST /project
 // ? @desc Login User
 // * @acess Public
 export const getAllProjects = async (req, res) => {
   try {
-    const project = await Project.find().populate("user");
+    const project = await Project.find().populate("user").sort({createdAt: -1});
 
     if (project) {
       return res.status(200).json({
@@ -35,10 +35,19 @@ export const createProject = async (req, res) => {
       donationAmount,
       sponsored,
       volunteerNumber,
+      location,
+      imageLink
     } = req.body;
 
-    if (!title || !description || !category || !openedFor) {
+
+    if (!title || !description || !category || !openedFor || !location || !imageLink) {
       return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    if(openedFor.includes('donate') && !donationAmount){
+      return res.status(400).json({ message: "Donation amount is required to make a funraising project." });
+    }else if(openedFor.includes('volunteer') && !volunteerNumber){
+      return res.status(400).json({ message: "Volunteer no required to open project for volunteering." });
     }
 
     const newProject = await Project.create({
@@ -51,6 +60,8 @@ export const createProject = async (req, res) => {
       donationAmount,
       sponsored,
       volunteerNumber,
+      location,
+      imageLink,
     });
 
     if (newProject) {
@@ -59,8 +70,8 @@ export const createProject = async (req, res) => {
       if (project) {
         return res.status(200).json({
           success: true,
-          message: "Project created successfully",
-          data: project,
+          message: "Project was created and is under review by our team. Your project will appear only after our team verifies the project within 72hours. Thank You",
+         
         });
       }
     }
@@ -123,3 +134,31 @@ export const donateMoney = async (req, res) => {
     res.status(400).json({ message: err.message, stack: err.stack });
   }
 };
+
+
+// ! @route POST /project/verify/:id
+// ? @desc Login User
+// * @acess Adm
+export const verifyProject = async (req, res) => {
+  try {
+    const user = req.user
+    const project =  await Project.findById(req.params.id).populate('user')
+    
+    if(user.isAdmin){
+      project.isVerified = true
+
+      await project.save()
+
+      res.status(200).json({
+        success: true,
+        message: "Project verified successfully",
+        data: project,
+      })
+    }
+
+    res.status(400).json({ message: "Internal Error" });
+  } catch (err) {
+    res.status(400).json({ message: err.message, stack: err.stack });
+  }
+};
+

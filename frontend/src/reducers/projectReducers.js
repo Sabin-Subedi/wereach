@@ -2,6 +2,9 @@ import {
   LIST_PROJECTS_FAILURE,
   LIST_PROJECTS_REQUEST,
   LIST_PROJECTS_SUCCESS,
+  PROJECT_CREATE_FAILURE,
+  PROJECT_CREATE_REQUEST,
+  PROJECT_CREATE_SUCCESS,
   PROJECT_DONATION_FAILURE,
   PROJECT_DONATION_REQUEST,
   PROJECT_DONATION_SUCCESS,
@@ -28,8 +31,24 @@ export const donationReducer = (state = {}, action) => {
       return { loading: true };
     case PROJECT_DONATION_SUCCESS:
       return { loading: false, donationSuccess: true };
+    case 'SET_DONATION_FALSE':
+      return {  };
     case PROJECT_DONATION_FAILURE:
       return { loading: false, donationSuccess: false };
+    default:
+      return state;
+  }
+};
+
+
+export const createProjectReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PROJECT_CREATE_REQUEST:
+      return { loading: true };
+    case PROJECT_CREATE_SUCCESS:
+      return { loading: false, projectCreated: true,message: action.payload.message };
+    case PROJECT_CREATE_FAILURE:
+      return { loading: false, error: action.payload };
 
     default:
       return state;

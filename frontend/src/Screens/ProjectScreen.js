@@ -12,7 +12,7 @@ import {
   Card,
 } from "react-bootstrap";
 import ProgressBar from "react-customizable-progressbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Avatar from "../components/Avatar";
 import Icon from "../components/Icon";
 
@@ -23,6 +23,7 @@ import DonateModal from "../components/DonateModal";
 import moment from "moment";
 
 function ProjectScreen({ match }) {
+  const dispatch = useDispatch()
   const { addToast } = useToasts();
   const [modalShow, setModalShow] = useState(false);
   const projectId = match.params.id;
@@ -31,25 +32,31 @@ function ProjectScreen({ match }) {
     (state) => state.donation
   );
 
+ 
   const filteredProject = projectList?.filter(
     (p) => p._id.toString() === projectId.toString()
   )[0];
 
   useEffect(() => {
     donationSuccess && setModalShow(false);
+   
     donationSuccess &&
       addToast("Donation was Succesful. Thank you for donating.", {
         appearance: "success",
         autoDismiss: true,
       });
-  }, [donationSuccess, addToast]);
+
+      dispatch({ type: "SET_DONATION_FALSE", });
+      
+  }, [donationSuccess, addToast,dispatch]);
 
   return loading ? (
     <Loader />
   ) : (
     <>
       <NavBar />
-      <Container>
+      <Container >
+        <div className='py-5 mt-5' >
         <Row xs={1} md={2} className="g-4">
           <Col md={8}>
             <Card>
@@ -68,8 +75,9 @@ function ProjectScreen({ match }) {
                 <Icon icon="fab fa-youtube" color="danger" size={2} />
               </div>
               <Card.Img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM6TqDFmxgAxWPoSZqPZo3oLMquE-3_cWqAp_839uxaE4JeTXAV9Jv9ofU9Iqs7PSTsCw&usqp=CAU"
+                src={filteredProject?.imageLink}
                 alt=""
+      
               />
               <Card.Body>
                 <p>{filteredProject?.description}</p>
@@ -90,14 +98,15 @@ function ProjectScreen({ match }) {
           <Col md={4}>
             <ListGroup className="">
               <ListGroup.Item className="p-4">
+              
                 {filteredProject?.donationAmount && (
                   <div className="d-flex align-items-center ">
                     <ProgressBar
                       className="fs-8"
                       progress={
-                        (filteredProject?.donatedAmount /
-                          filteredProject?.donationAmount) *
-                        100
+                        (((filteredProject?.donatedAmount /
+                            filteredProject?.donationAmount) *
+                          100))
                       }
                       radius={25}
                       strokeWidth={6}
@@ -106,9 +115,14 @@ function ProjectScreen({ match }) {
                     >
                       <div className="indicator">
                         <div>
-                          {(filteredProject?.donatedAmount /
+                       
+                          {((filteredProject?.donatedAmount /
                             filteredProject?.donationAmount) *
-                            100}
+                            100).toString().split('.')[1]?.length > 2 ? ((filteredProject?.donatedAmount /
+                              filteredProject?.donationAmount) *
+                            100).toFixed(2): ((filteredProject?.donatedAmount /
+                              filteredProject?.donationAmount) *
+                            100)}
                           %
                         </div>
                       </div>
@@ -174,6 +188,7 @@ function ProjectScreen({ match }) {
             </ListGroup>
           </Col>
         </Row>
+        </div>
         <DonateModal
           show={modalShow}
           id={projectId}

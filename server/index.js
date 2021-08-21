@@ -5,7 +5,8 @@ import path from "path";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
-// import { bucket } from './firebase.js'
+import uploadRoutes from "./routes/uploadRoutes.js"
+
 
 dotenv.config();
 
@@ -20,8 +21,24 @@ app.use(express.json());
 
 app.use("/auth/", authRoutes);
 app.use("/project/", projectRoutes);
+app.use('/upload', uploadRoutes)
 
-const PORT = process.env.PORT || 5000;
+const __dirname = path.resolve()
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+  })
+} else {
+  app.get('/', (req, res) => {
+    res.send('Server is running.......')
+  })
+}
+
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   if (process.env.NODE_ENV === "development") {
