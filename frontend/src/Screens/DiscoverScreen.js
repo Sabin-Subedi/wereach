@@ -47,6 +47,8 @@ function DiscoverScreen() {
     return false;
   });
 
+  console.log(filteredProject)
+
   const handleClear = () => {
       document.querySelectorAll('input[type="checkbox"]').forEach(val => val.checked = false)
     setLocation("");
@@ -157,7 +159,7 @@ function DiscoverScreen() {
           </Col>
           <Col md={8}>
             <Row md={3} className="gx-3  mb-5  ">
-              {filteredProject &&
+              {filteredProject.length >0 &&
               (categoryFilter.length > 0 || location || typeFilter.length > 0)
                 ? filteredProject.map((project) => (
                     <Col className="mb-4">

@@ -5,6 +5,7 @@ import { userAuthReducer } from "./reducers/authReducers";
 import {
   createProjectReducer,
   donationReducer,
+  projectByIdReducer,
   projectListReducer,
 } from "./reducers/projectReducers";
 
@@ -12,7 +13,8 @@ const reducer = combineReducers({
   user: userAuthReducer,
   projects: projectListReducer,
   donation: donationReducer,
-  createProject: createProjectReducer
+  createProject: createProjectReducer,
+  projectByIdList: projectByIdReducer
 });
 
 const intialState = {

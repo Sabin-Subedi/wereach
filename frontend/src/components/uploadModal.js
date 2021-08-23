@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Container, Modal, Spinner } from "react-bootstrap";
+import { Button,  Modal, Spinner } from "react-bootstrap";
 
 function UploadModal(props) {
   return (

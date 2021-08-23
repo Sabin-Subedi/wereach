@@ -1,7 +1,8 @@
 import { Formik } from "formik";
 import React, { useEffect } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Button, Col, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
 
 import { Link, useHistory } from "react-router-dom";
 import { login } from "../actions/authActions";
@@ -32,13 +33,12 @@ function SignInScreen() {
       className="container d-flex align-items-center"
       style={{ height: "100vh" }}
     >
-      <div className="col-5 mx-auto">
-        <h1
-          href="#home"
-          className="mx-auto display-6 mb-4 text-center text-success text-uppercase "
-        >
-          civics
-        </h1>
+      <Col xs={12} sm={8} lg={4} className="mx-auto">
+        <LinkContainer to="/">
+          <div className="d-flex justify-content-center">
+            <img src="/wereach.svg" alt="WEREACH" />
+          </div>
+        </LinkContainer>
 
         <div className="shadow rounded-3 p-5">
           <h2 className="text-center">Sign In</h2>
@@ -116,7 +116,7 @@ function SignInScreen() {
         <p className="text-center mt-5">
           New to Civics? <Link to="/register">Join Now</Link>
         </p>
-      </div>
+      </Col>
     </main>
   );
 }

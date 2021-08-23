@@ -8,9 +8,9 @@ import { categoryWithIcon } from '../constants/data'
 function CategoryIconsBox() {
     return (
         <div className='bg-tan py-5'>
-            <Container>
+            <Container fluid='md'>
          <h2 className='text-center mb-5'>Browse project by category</h2>
-         <Row md={4}>
+         <Row xs={2} md={4}>
          {
                 categoryWithIcon.map(cat => (
                     <LinkContainer to={`/discover?category=${cat.category.replace(/\s+/g, '').toLowerCase()}`}>

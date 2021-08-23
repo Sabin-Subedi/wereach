@@ -28,6 +28,7 @@ function HomeScreen() {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (!projectList) {
       history.push("/404");
     }
@@ -41,21 +42,21 @@ function HomeScreen() {
         <div className="hero_wrapper d-flex align-items-center justify-content-start">
           <div className="hero_banner"></div>
 
-          <div className="container">
+          <Container fluid='md'>
             <div className="hero_content position-relative mt-5">
               <h1>
                 Be the part of the change in society involving in the projects
                 near you.
               </h1>
               <p className="fs-4 fw-light text-muted">Get Started Today</p>
-              <div className="d-flex align-items-center">
+              <div className="d-flex flex-wrap align-items-center">
                 <LinkContainer to={userInfo ? '/create/project' : '/login'}>
-                  <Button variant="success" className="fw-bold py-3 px-4">
+                  <Button variant="success" className="fw-bold py-3 px-4 mb-2">
                     Start Your Project
                   </Button>
                 </LinkContainer>
                 <div
-                  className="d-flex flex-row align-items-center text-muted fs-4 fw-light pointer ms-4"
+                  className="d-flex flex-row align-items-center text-muted fs-4 fw-light pointer ms-lg-4"
                   onClick={() => setModalShow(true)}
                 >
                   <Icon icon="fal fa-play-circle" size={1} color="muted" />
@@ -63,21 +64,20 @@ function HomeScreen() {
                 </div>
               </div>
             </div>
-          </div>
+          </Container>
         </div>
       </section>
       <VideoModal show={modalShow} onHide={() => setModalShow(false)} />
-      <Container>
-        <div className="cards">
-          <Container>
+      <Container fluid='md'>
+        
             <div className="py-5">
               <h2 className="fw-bolder">Top Donation Projects</h2>
-              <Row xs={1} md={4} className="gx-3 gy-4 mb-5 mt-3">
+              <Row xs={1} sm={2} lg={4} className="gx-3 gy-4 mb-5 mt-3">
                 {[...Array(4).keys()].map((num) => (
                   <Col className="">
                     <CardBox
                       data={
-                        projectList.sort((first, second) => {
+                        projectList?.sort((first, second) => {
                           if (first?.donatedAmount > second?.donatedAmount) {
                             return -1;
                           }
@@ -96,17 +96,17 @@ function HomeScreen() {
                 </LinkContainer>
               </div>
             </div>
-          </Container>
-        </div>
+        
       </Container>
       <div className="category">
         <CategoryIconsBox />
       </div>
-      <Container className="py-5">
+
+      <Container fluid='md' >
         {location && filterProjectByLocation ? (
           <div className="mt-5">
             <h2 className="fw-bolder">Projects in {location}</h2>
-            <Row xs={1} md={4} className="g-4 mb-5 mt-3">
+            <Row xs={1} sm={2} lg={4} className="g-4 mb-5 mt-3">
               {[...Array(8).keys()].map((num) => (
                 <Col className="">
                   <CardBox data={filterProjectByLocation[num]} />
@@ -118,7 +118,7 @@ function HomeScreen() {
           projectList && (
             <div className="mt-5">
               <h2 className="fw-bolder">Latest Projects</h2>
-              <Row xs={1} md={4} className="g-4 mb-5 mt-3">
+              <Row xs={1} sm={2} lg={4} className="g-4 mb-5 mt-3">
                 {[...Array(8).keys()].map((num) => (
                   <Col className="">
                     <CardBox data={projectList[num]} />
@@ -139,7 +139,7 @@ function HomeScreen() {
       <div className="category">
         <CategoryIconsBox />
       </div>
-      <Container className="py-5">
+      <Container fluid='md' className="py-5">
         <div className="d-flex flex-column align-items-center">
           <h5 className="fw-light mb-4">Ready to start your project?</h5>
           <div>

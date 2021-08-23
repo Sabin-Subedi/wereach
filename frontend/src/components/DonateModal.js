@@ -24,8 +24,6 @@ function DonateModal(props) {
   const [amount, setAmount] = useState(100);
   const [sdkReady, setSdkReady] = useState(false);
 
-  console.log(amount);
-  console.log();
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");

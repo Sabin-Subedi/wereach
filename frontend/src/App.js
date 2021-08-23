@@ -16,6 +16,8 @@ import useLocation from "./hooks/useLocation";
 import { useToasts } from "react-toast-notifications";
 import DiscoverScreen from "./Screens/DiscoverScreen";
 import AdminProjectScreen from "./Screens/AdminProjectScreen";
+import Avatar, { ConfigProvider } from 'react-avatar';
+import MyProjectScreen from "./Screens/MyProjectScreen";
 
 function App() {
   useLocation();
@@ -54,7 +56,7 @@ function App() {
       {loading || projectLoading ? (
         <Loader />
       ) : (
-        <>
+        <ConfigProvider colors={['#FA8C16', '#04D182', '#1890FF', '#FFC542', '#FF6B72']}>
           <Router>
             <Route path="/login" component={SignInScreen} exact />
             <Route
@@ -63,12 +65,13 @@ function App() {
               exact
             />
             <Route path="/project/:id" component={ProjectScreen} exact />
+            <Route path="/projects/:id" component={MyProjectScreen} exact />
             <Route path="/discover" component={DiscoverScreen} exact />
             <Route path="/admin/projects" component={AdminProjectScreen} exact />
             <Route path="/register" component={SignUpScreen} exact />
             <Route path="/" component={HomeScreen} exact />
           </Router>
-        </>
+        </ConfigProvider>
       )}
     </>
   );
