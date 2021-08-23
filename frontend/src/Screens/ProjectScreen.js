@@ -209,7 +209,7 @@ function ProjectScreen({ match }) {
                           Be the Volunteer
                         </Button>
                       ) : (
-                        project?.openedFor.includes("sponsor") && (
+                        project?.openedFor.includes("volunteer") && (
                           <a
                             href={project?.volunteerCommunityLink}
                             target="_blank"
