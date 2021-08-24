@@ -60,9 +60,19 @@ function NavBar() {
                     menuVariant="light"
                     title={`Admin`}
                   >
-                    <LinkContainer to="/admin/dashboard">
+                    <LinkContainer to="/admin/dashboard?filter=projects">
                       <NavDropdown.Item>
-                        <i className="fas fa-columns me-2"></i>Dashboard
+                        <i className="fab fa-500px me-2"></i>Projects
+                      </NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/dashboard?filter=users">
+                      <NavDropdown.Item>
+                        <i className="far fa-user me-2"></i>Users
+                      </NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/dashboard?filter=messages">
+                      <NavDropdown.Item>
+                        <i className="far fa-comment-alt-dots me-2"></i>Messages
                       </NavDropdown.Item>
                     </LinkContainer>
                   </NavDropdown>

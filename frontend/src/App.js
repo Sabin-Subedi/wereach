@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router
 import HomeScreen from "./Screens/HomeScreen.jsx";
 import SignInScreen from "./Screens/SignInScreen";
 import SignUpScreen from "./Screens/SignUpScreen";
-import { getUserData } from "./actions/authActions";
+import { getAllUser, getUserData } from "./actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProjects } from "./actions/projectActions";
 import ProjectScreen from "./Screens/ProjectScreen";
@@ -19,6 +19,8 @@ import  { ConfigProvider } from 'react-avatar';
 import MyProjectScreen from "./Screens/MyProjectScreen";
 import ErrorPage from "./Screens/ErrorScreen";
 import VerifyScreen from "./Screens/VerifyScreen";
+import DashboardScreen from "./Screens/DashboardScreen";
+import AdminProjectView from "./Screens/AdminProjectView";
 
 function App() {
   useLocation();
@@ -49,7 +51,7 @@ function App() {
     if (token) {
       dispatch(getUserData(token));
     }
-
+  
     dispatch(getAllProjects());
   }, [dispatch, history]);
 
@@ -67,9 +69,11 @@ function App() {
               component={CreateProjectScreen}
               exact
             />
+            <Route exact path="/admin/dashboard" component={DashboardScreen}  />
             <Route  path='/verify-otp' component={VerifyScreen} exact />
             <Route path="/project/:id" component={ProjectScreen} exact />
             <Route path="/projects/:id" component={MyProjectScreen} exact />
+            <Route path="/admin/project/:id" component={AdminProjectView} exact />
             <Route path="/discover" component={DiscoverScreen} exact />
             <Route path="/admin/projects" component={AdminProjectScreen} exact />
             <Route path="/register" component={SignUpScreen} exact />

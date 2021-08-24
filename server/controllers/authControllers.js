@@ -189,3 +189,41 @@ export const getUserData = async (req, res) => {
     res.status(400).json({ message: err.message, stack: err.stack });
   }
 };
+
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const user = await User.find().select('-password').sort({ createdAt: -1 });
+
+    if (user) {
+      return res.status(200).json({
+        success: true,
+        message: "Users List Found",
+        data: user
+      });
+    }
+
+    res.status(404).json({ message: "Internal error" });
+  } catch (err) {
+    res.status(400).json({ message: err.message, stack: err.stack });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findOneAndDelete({ _id: req.params.id })
+
+    if (user) {
+      const users = await User.find().select('-password').sort({ createdAt: -1 });
+      return res.status(200).json({
+        success: true,
+        message: "User was successfully deleted.",
+        data: users
+      });
+    }
+
+    res.status(404).json({ message: "Internal error" });
+  } catch (err) {
+    res.status(400).json({ message: err.message, stack: err.stack });
+  }
+};

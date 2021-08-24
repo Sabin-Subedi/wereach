@@ -218,22 +218,45 @@ export const donateMoney = async (req, res) => {
 export const verifyProject = async (req, res) => {
   try {
     const user = req.user;
-    const project = await Project.findById(req.params.id).populate("user");
+    const project = await Project.findById(req.params.id)
+      .populate("user")
+      .populate("user")
+      .populate({
+        path: "volunteerList",
+        populate: { path: "volunteers.user" },
+      })
+      .populate({
+        path: "donationList",
+        populate: { path: "donation.user" },
+      });
 
     if (user.isAdmin) {
       project.isVerified = true;
 
       await project.save();
 
-      res.status(200).json({
+      const projects = await Project.find()
+        .populate("user")
+        .populate({
+          path: "volunteerList",
+          populate: { path: "volunteers.user" },
+        })
+        .populate({
+          path: "donationList",
+          populate: { path: "donation.user" },
+        });
+
+      return res.status(200).json({
         success: true,
         message: "Project verified successfully",
-        data: project,
+        data: projects,
+        project: project,
       });
     }
 
     res.status(400).json({ message: "Internal Error" });
   } catch (err) {
+    console.log(err);
     res.status(400).json({ message: err.message, stack: err.stack });
   }
 };
@@ -271,15 +294,15 @@ export const addVolunteerToProject = async (req, res) => {
       await volunteerList.save();
 
       const updatedProject = await await Project.findById(projectId)
-      .populate("user")
-      .populate({
-        path: "volunteerList",
-        populate: { path: "volunteers.user" },
-      })
-      .populate({
-        path: "donationList",
-        populate: { path: "donation.user" },
-      });
+        .populate("user")
+        .populate({
+          path: "volunteerList",
+          populate: { path: "volunteers.user" },
+        })
+        .populate({
+          path: "donationList",
+          populate: { path: "donation.user" },
+        });
 
       return res.status(201).json({
         success: true,

@@ -1,4 +1,4 @@
-import { AUTH_LOGIN_FAILURE, AUTH_LOGIN_REQUEST, AUTH_LOGIN_SUCCESS, AUTH_LOGOUT, AUTH_REGISTER_FAILURE, AUTH_REGISTER_REQUEST, AUTH_REGISTER_SUCCESS, USER_DATA_UPDATE_FAILURE, USER_DATA_UPDATE_REQUEST, USER_DATA_UPDATE_SUCCESS } from "../constants/authConstants";
+import { AUTH_LOGIN_FAILURE, AUTH_LOGIN_REQUEST, AUTH_LOGIN_SUCCESS, AUTH_LOGOUT, AUTH_REGISTER_FAILURE, AUTH_REGISTER_REQUEST, AUTH_REGISTER_SUCCESS, GET_ALL_USERS_FAILURE, GET_ALL_USERS_REQUEST, GET_ALL_USERS_SUCCESS, USER_DATA_UPDATE_FAILURE, USER_DATA_UPDATE_REQUEST, USER_DATA_UPDATE_SUCCESS } from "../constants/authConstants";
 
 export const userAuthReducer = (state = {userInfo:{}}, action) => {
     switch (action.type) {
@@ -29,3 +29,18 @@ export const userAuthReducer = (state = {userInfo:{}}, action) => {
     }
 }
 
+
+export const getAllUserReducer = (state = {userLists:[]}, action) => {
+    switch (action.type) {
+        case GET_ALL_USERS_REQUEST:
+            return {loading: true}
+        case GET_ALL_USERS_SUCCESS:
+            return {loading: false, userLists: action.payload}
+        case GET_ALL_USERS_FAILURE:
+            return {loading: false, error: action.payload}
+        case "DELETE_USER":
+            return {loading: false, userLists: action.payload}
+        default:
+            return state
+    }
+}

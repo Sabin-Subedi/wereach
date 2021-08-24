@@ -19,7 +19,7 @@ function useLocation(props) {
         })
       },
       function(error) {
-        console.error("Error Code = " + error.code + " - " + error.message);
+        console.error("Error Code  " + error.code + " - " + error.message);
       }
     );
 

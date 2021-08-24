@@ -1,7 +1,7 @@
 import jwt, { decode } from "jsonwebtoken";
 import User from "../models/userModel.js";
 
-export const protect = async (req, res, next) => {
+export const isAdmin = async (req, res, next) => {
   let token;
 
   if (
@@ -14,17 +14,18 @@ export const protect = async (req, res, next) => {
 
       const user = await User.findById(decoded.id).select("-password");
 
-      if(user.isAdmin){
-        next()
+      if(!user.isAdmin){
+        return res.status(400).json({message:"Unauthorized Route for this user."})
       }
 
-      throw new Error("Unauthorized Route for this user.")
+      next();
     } catch (error) {
 
       res.status(401);
-      throw new Error("Not authorized token failed");
+      res.json({message:"Not authorized token failed"})
+
     }
   } else {
-    res.status(404).json({ message: "Not authorized" });
+    return res.status(404).json({ message: "Not authorized" });
   }
 };

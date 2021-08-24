@@ -262,7 +262,6 @@ export const countryList = [
   "Åland Islands",
 ];
 
-
 export const categoryWithIcon = [
   {
     icon: "education.svg",
@@ -312,3 +311,43 @@ export const openedFor = [
     value: "volunteer",
   },
 ];
+
+export const features = Object.freeze([
+  {
+    title: "Secure",
+    icon: "fal fa-shield-check",
+    description:
+      "Our Trust & Safety team works around the clock to protect against fraud.",
+  },
+  {
+    title: "Social Reach",
+    icon: "fal fa-analytics",
+    description:
+      "Harness the power of social media to spread your project and get more support.",
+  },
+  {
+    title: "Community",
+    icon: "fal fa-users",
+    description:
+      "The huge network of volunteers are always there to contribute to the projects.",
+  },
+  {
+    title: "Transparent",
+    icon: "fal fa-search-dollar",
+    description:
+      "The project created will be transparent to the members of the project to prevent fraud.",
+  },
+  {
+    title: "Easy to Use",
+    icon: "fal fa-hand-peace",
+    description:
+      "The creation and participation of projects is very easy, making this app a wonderful platform to use.",
+  },
+  {
+    title: "Worldwide Leader",
+    icon: "fal fa-globe",
+    description:
+      "WeREACH is trusted around the world for its simple, reliable platform.",
+  },
+ 
+]);

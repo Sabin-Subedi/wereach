@@ -12,6 +12,8 @@ import NavBar from "../components/Navbar";
 import VideoModal from "../components/VideoModal";
 import useLocation from "../hooks/useLocation";
 import ScrollToTop from "react-scroll-to-top";
+import Feature from "../components/Feature";
+import FeatureBox from "../components/FeatureBox";
 
 function HomeScreen() {
   const history = useHistory();
@@ -105,9 +107,10 @@ function HomeScreen() {
             </div>
         
       </Container>
-      <div className="category">
-        <CategoryIconsBox />
+      <div className="features">
+        <FeatureBox />
       </div>
+     
 
       <Container fluid='md' >
         {location && filterProjectByLocation ? (
@@ -146,6 +149,7 @@ function HomeScreen() {
       <div className="category">
         <CategoryIconsBox />
       </div>
+      
       <Container fluid='md' className="py-5">
         <div className="d-flex flex-column align-items-center">
           <h5 className="fw-light mb-4">Ready to start your project?</h5>
@@ -158,6 +162,7 @@ function HomeScreen() {
           </div>
         </div>
       </Container>
+  
       <Footer />
     </>
   );

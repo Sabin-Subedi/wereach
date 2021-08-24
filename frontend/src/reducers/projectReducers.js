@@ -21,7 +21,8 @@ export const projectListReducer = (state = { projectList: [] }, action) => {
       return { loading: false, projectList: action.payload };
     case LIST_PROJECTS_FAILURE:
       return { loading: false, error: action.payload };
-    
+    case "VERIFY_PROJECT":
+      return { loading: false, projectList: action.payload };
     default:
       return state;
   }
@@ -33,9 +34,11 @@ export const projectByIdReducer = (state = {}, action) => {
       return { loading: true };
     case PROJECT_BY_ID_SUCCESS:
       return { loading: false, project: action.payload };
-    case 'ADD_VOLUNTEER':
-      return {loading: false, project: action.payload }
-      case PROJECT_DONATION_SUCCESS:
+    case "ADD_VOLUNTEER":
+      return { loading: false, project: action.payload };
+    case "VERIFY_PROJECT":
+      return { loading: false, project: action.project };
+    case PROJECT_DONATION_SUCCESS:
       return { project: action.payload };
     case PROJECT_BY_ID_FAILURE:
       return { loading: false, error: action.payload };
@@ -69,9 +72,8 @@ export const createProjectReducer = (state = {}, action) => {
         projectCreated: true,
         message: action.payload.message,
       };
-
-    case 'PROJECT_CREATE_RESET': 
-      return {}
+    case "PROJECT_CREATE_RESET":
+      return {};
     case PROJECT_CREATE_FAILURE:
       return { loading: false, error: action.payload };
 
