@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import {
   Badge,
-  Card,
   Col,
   Container,
-  Form,
-  ListGroup,
-  Row,
   Table,
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import Avatar from "../components/Avatar";
 import Icon from "../components/Icon";
 import NavBar from "../components/Navbar";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
+import Avatar from "react-avatar";
 
 function MyProjectScreen() {
   console.log(window.location.search);
@@ -48,7 +44,7 @@ function MyProjectScreen() {
     <div>
       <NavBar />
       <Container>
-        {filteredProject.length > 0 ? (
+        {filteredProject?.length > 0 ? (
           <div className="pt-5 mt-5">
             <div className="row">
               <Col sm={3}>
@@ -89,14 +85,20 @@ function MyProjectScreen() {
                               <td>{index + 1}</td>
                               <td>
                                 <div className="d-flex align-items-center">
-                                  <Avatar source={donation.user.avatar} />
-                                  <span
-                                    className="fw-bolder"
-                                    style={{ marginLeft: "0.5rem" }}
-                                  >
-                                    {donation.user.name}
-                                  </span>
+                                  <Avatar
+                                    className="d-none d-lg-inline-block"
+                                    name={donation.user.name}
+                                    round
+                                    size="40"
+                                    textSizeRatio={2}
+                                  />
                                 </div>
+                                <span
+                                  className="fw-bolder"
+                                  style={{ marginLeft: "0.5rem" }}
+                                >
+                                  {donation.user.name}
+                                </span>
                               </td>
                               <td>{donation.user.email}</td>
                               <td>${donation.amount}</td>
@@ -116,11 +118,9 @@ function MyProjectScreen() {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="bg-light mt-3 p-4 pb-2 rounded-3">
-                  <h4 className="fw-normal">
-                    Interested Volunteer List
-                  </h4>
+                  <h4 className="fw-normal">Interested Volunteer List</h4>
                   {selectedProject?.volunteerList?.volunteers?.length > 0 ? (
                     <Table id="volunteer_list">
                       <thead>
@@ -139,7 +139,13 @@ function MyProjectScreen() {
                               <td>{index + 1}</td>
                               <td>
                                 <div className="d-flex align-items-center">
-                                  <Avatar source={volunteer.user.avatar} />
+                                  <Avatar
+                                    className="d-none d-lg-inline-block"
+                                    name={volunteer.user.name}
+                                    round
+                                    size="40"
+                                    textSizeRatio={2}
+                                  />
                                   <span
                                     className="fw-bolder"
                                     style={{ marginLeft: "0.5rem" }}
@@ -157,18 +163,17 @@ function MyProjectScreen() {
                         )}
                       </tbody>
                     </Table>
-                  ): (
+                  ) : (
                     <div className="text-center p-4 text-secondary">
-                    <Icon
-                      icon="fal fa-person-sign"
-                      color="secondary"
-                      className="fs-lg"
-                    />
-                    <p className="fs-2">No volunteers yet.</p>
-                  </div>
+                      <Icon
+                        icon="fal fa-person-sign"
+                        color="secondary"
+                        className="fs-lg"
+                      />
+                      <p className="fs-2">No volunteers yet.</p>
+                    </div>
                   )}
                 </div>
-                
               </Col>
             </div>
           </div>
@@ -176,10 +181,9 @@ function MyProjectScreen() {
           <h1>You haven't Created Any Project</h1>
         )}
       </Container>
-      <div className='mt-5'>
-      <Footer />
+      <div className="mt-5">
+        <Footer />
       </div>
-      
     </div>
   );
 }

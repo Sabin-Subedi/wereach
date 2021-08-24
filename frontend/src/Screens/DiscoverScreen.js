@@ -3,6 +3,7 @@ import { Button, Col, Container, Form, Navbar, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import CardBox from "../components/CardBox";
+import Icon from "../components/Icon";
 import NavBar from "../components/Navbar";
 import { category, countryList, openedFor } from "../constants/data";
 
@@ -12,7 +13,6 @@ function DiscoverScreen() {
   const [typeFilter, setTypeFilter] = useState([]);
   const [location, setLocation] = useState();
   const { projectList } = useSelector((state) => state.projects);
-  
 
   const filteredProject = projectList?.filter((project) => {
     if (categoryFilter.length > 0) {
@@ -24,6 +24,7 @@ function DiscoverScreen() {
       ) {
         return true;
       }
+
       if (
         categoryFilter.includes(
           project.category.replace(/\s+/g, "").toLowerCase()
@@ -47,14 +48,15 @@ function DiscoverScreen() {
     return false;
   });
 
-  console.log(filteredProject)
+  console.log(filteredProject);
 
   const handleClear = () => {
-      document.querySelectorAll('input[type="checkbox"]').forEach(val => val.checked = false)
+    document
+      .querySelectorAll('input[type="checkbox"]')
+      .forEach((val) => (val.checked = false));
     setLocation("");
     setTypeFilter([]);
     setCategoryFilter([]);
- 
   };
 
   useEffect(() => {
@@ -71,10 +73,10 @@ function DiscoverScreen() {
   return (
     <>
       <NavBar />
-      <Container className="mt-5 py-5">
+      <Container fluid='md | lg' className="mt-5 py-5">
         <Row>
-          <Col md={4}>
-            <div className="bg-tan p-4 rounded-3">
+          <Col sm={4} >
+            <div className="bg-tan p-4 rounded-3 mb-4">
               <h3>Filter By</h3>
               <div className="">
                 <Form>
@@ -157,21 +159,38 @@ function DiscoverScreen() {
               </div>
             </div>
           </Col>
-          <Col md={8}>
-            <Row md={3} className="gx-3  mb-5  ">
-              {filteredProject.length >0 &&
+          <Col sm={8}>
+            <Row xs={1} sm={2} md={2} lg={3} className="gx-3  mb-5  ">
+              {filteredProject.length > 0 &&
               (categoryFilter.length > 0 || location || typeFilter.length > 0)
                 ? filteredProject.map((project) => (
                     <Col className="mb-4">
                       <CardBox data={project} />
                     </Col>
                   ))
-                : projectList?.map((project) => (
+                : filteredProject.length === 0 &&
+                  categoryFilter.length === 0 &&
+                  !location &&
+                  typeFilter.length === 0 &&
+                  projectList.map((project) => (
                     <Col className="mb-4">
                       <CardBox data={project} />
                     </Col>
                   ))}
             </Row>
+            {filteredProject.length === 0 &&
+              (categoryFilter.length > 0 ||
+                location ||
+                typeFilter.length > 0) && (
+                <div className="text-center p-4 text-secondary">
+                  <Icon
+                    icon="fal fa-exclamation-triangle"
+                    color="secondary"
+                    className="fs-lg"
+                  />
+                  <p className="fs-2">Projects not found.</p>
+                </div>
+              )}
           </Col>
         </Row>
       </Container>

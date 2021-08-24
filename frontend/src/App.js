@@ -18,6 +18,8 @@ import DiscoverScreen from "./Screens/DiscoverScreen";
 import AdminProjectScreen from "./Screens/AdminProjectScreen";
 import Avatar, { ConfigProvider } from 'react-avatar';
 import MyProjectScreen from "./Screens/MyProjectScreen";
+import ErrorPage from "./Screens/ErrorScreen";
+import VerifyScreen from "./Screens/VerifyScreen";
 
 function App() {
   useLocation();
@@ -42,6 +44,7 @@ function App() {
     
   }, [message,error,addToast]);
 
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -64,13 +67,16 @@ function App() {
               component={CreateProjectScreen}
               exact
             />
+            <Route  path='/verify-otp' component={VerifyScreen} exact />
             <Route path="/project/:id" component={ProjectScreen} exact />
             <Route path="/projects/:id" component={MyProjectScreen} exact />
             <Route path="/discover" component={DiscoverScreen} exact />
             <Route path="/admin/projects" component={AdminProjectScreen} exact />
             <Route path="/register" component={SignUpScreen} exact />
             <Route path="/" component={HomeScreen} exact />
+            <Route  path='/404' component={ErrorPage}  />
           </Router>
+
         </ConfigProvider>
       )}
     </>

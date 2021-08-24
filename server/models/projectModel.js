@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+
+
 const projectSchema = mongoose.Schema(
   {
     user: {
@@ -40,9 +42,7 @@ const projectSchema = mongoose.Schema(
     donationAmount: {
       type: Number,
     },
-    donationUser: {
-      type: Array,
-    },
+   
     donatedAmount: {
       type: Number,
       default: 0,
@@ -62,9 +62,20 @@ const projectSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    volunteerCommunityLink: {
+      type: String,
+    },
     isVerified: {
       type: Boolean,
       default: false,
+    },
+    volunteerList:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'volunteer'
+    },
+    donationList: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'donation'
     },
   },
   {

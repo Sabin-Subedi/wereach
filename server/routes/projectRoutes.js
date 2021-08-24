@@ -1,6 +1,7 @@
 import express from "express";
 
 import {
+  addVolunteerToProject,
   createProject,
   donateMoney,
   getAllProjects,
@@ -14,5 +15,7 @@ router.route("/create").post(protect, createProject);
 router.get("/", getAllProjects);
 router.get("/getproject/:id", getProjectById);
 router.post("/donate/:id", protect, donateMoney);
+
+router.put("/add/volunteer/:id",protect,addVolunteerToProject)
 
 export default router;

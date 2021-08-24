@@ -29,42 +29,42 @@ function Footer() {
                     .replace(/\s+/g, "")
                     .toLowerCase()}`}
                 >
-                  <p className="mb-1 fs-6 fw-light">{item}</p>
+                  <p className="mb-1 fs-6 fw-light pointer">{item}</p>
                 </LinkContainer>
               ))}
             </Col>
             <Col>
               <h5 className="text-success">Learn More</h5>
               <LinkContainer to="/about-us">
-                <p className="mb-1 fs-6 fw-light">About Us</p>
+                <p className="mb-1 fs-6 fw-light pointer">About Us</p>
               </LinkContainer>
               <LinkContainer to="/how-it-works">
-                <p className="mb-1 fs-6 fw-light">How it works</p>
+                <p className="mb-1 fs-6 fw-light pointer">How it works</p>
               </LinkContainer>
               <LinkContainer to="/company-vision">
-                <p className="mb-1 fs-6 fw-light">Our Vision</p>
+                <p className="mb-1 fs-6 fw-light pointer">Our Vision</p>
               </LinkContainer>
             </Col>
 
             <Col>
               <h5 className="text-success">Resources</h5>
               <LinkContainer to="/contact-us">
-                <p className="mb-1 fs-6 fw-light">Contact Us</p>
+                <p className="mb-1 fs-6 fw-light pointer">Contact Us</p>
               </LinkContainer>
               <LinkContainer to="/success-stories">
-                <p className="mb-1 fs-6 fw-light">Success Stories</p>
+                <p className="mb-1 fs-6 fw-light pointer">Success Stories</p>
               </LinkContainer>
               <LinkContainer to="/privavy-and-policy">
-                <p className="mb-1 fs-6 fw-light">Privacy and Policy</p>
+                <p className="mb-1 fs-6 fw-light pointer">Privacy and Policy</p>
               </LinkContainer>
               <LinkContainer to="/terms-and-condition">
-                <p className="mb-1 fs-6 fw-light">Terms and Condition</p>
+                <p className="mb-1 fs-6 fw-light pointer">Terms and Condition</p>
               </LinkContainer>
             </Col>
           </Row>
         </Container>
       </div>
-      <div className="py-3 text-center fs-6 fw-light">© 2010-2021 Civis</div>
+      <div className="py-3 text-center fs-6 fw-light pointer">© 2010-2021 Civis</div>
     </>
   );
 }

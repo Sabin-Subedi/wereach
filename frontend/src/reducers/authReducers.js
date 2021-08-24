@@ -18,6 +18,8 @@ export const userAuthReducer = (state = {userInfo:{}}, action) => {
             return {loading: true};
         case USER_DATA_UPDATE_SUCCESS:
             return {loading: false, userInfo: action.payload};
+        case 'VERIFY_EMAIL':
+            return {loading: false, userInfo: action.payload};
         case USER_DATA_UPDATE_FAILURE:
             return {loading: false};
         case AUTH_LOGOUT:

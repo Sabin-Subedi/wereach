@@ -23,6 +23,13 @@ const userSchema = mongoose.Schema(
     isAdmin:{
       type: Boolean,
       default: false,
+    },
+    emailVerified: {
+      type: Boolean,
+      default: false,
+    },
+    otpCode: {
+      type: String
     }
   },
   {

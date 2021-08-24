@@ -6,6 +6,7 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js"
+import { sendEmail } from "./utils/email.js";
 
 
 dotenv.config();
@@ -18,6 +19,7 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
+
 
 app.use("/auth/", authRoutes);
 app.use("/project/", projectRoutes);

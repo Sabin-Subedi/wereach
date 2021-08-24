@@ -114,7 +114,7 @@ function SignInScreen() {
           </Formik>
         </div>
         <p className="text-center mt-5">
-          New to Civics? <Link to="/register">Join Now</Link>
+          New to WeReach? <Link to="/register">Join Now</Link>
         </p>
       </Col>
     </main>

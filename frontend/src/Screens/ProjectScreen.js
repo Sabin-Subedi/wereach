@@ -23,12 +23,14 @@ import moment from "moment";
 import VolunteerModal from "../components/VolunteerModal";
 import { projectById } from "../actions/projectActions";
 import { LinkContainer } from "react-router-bootstrap";
+import SponsorModal from "../components/SponsorModal";
 
 function ProjectScreen({ match }) {
   const dispatch = useDispatch();
   const { addToast } = useToasts();
   const [modalShow, setModalShow] = useState(false);
   const [volModalShow, setVolModalShow] = useState(false);
+  const [sponsorModalShow, setSponsorModalShow] = useState(false);
   const community = useRef();
   const projectId = match.params.id;
   const { userInfo } = useSelector((state) => state.user);
@@ -182,6 +184,7 @@ function ProjectScreen({ match }) {
                           variant="warning"
                           size="lg"
                           className="align-middle"
+                          onClick={() => setSponsorModalShow(true)}
                         >
                           <Icon
                             icon="fas fa-handshake-alt"
@@ -248,14 +251,14 @@ function ProjectScreen({ match }) {
                         </Button>
                       </LinkContainer>
 
-                      <Button variant="warning">
+                      {/* <Button variant="warning">
                         <Icon
                           icon="fas fa-handshake-alt"
                           size="5"
                           color="dark"
                         />
                         Sponsors List
-                      </Button>
+                      </Button> */}
                       <LinkContainer
                         to={`/projects/${userInfo?.id}?project=${project?._id}#donation_list`}
                       >
@@ -289,6 +292,13 @@ function ProjectScreen({ match }) {
           show={volModalShow}
           id={projectId}
           onHide={() => setVolModalShow(false)}
+          data={project}
+          community={community}
+        />
+         <SponsorModal
+          show={sponsorModalShow}
+          id={projectId}
+          onHide={() => setSponsorModalShow(false)}
           data={project}
           community={community}
         />

@@ -27,6 +27,13 @@ function HomeScreen() {
       location.toString().trim().toLowerCase()
   );
 
+
+  useEffect(() => {
+    if(!userInfo?.emailVerified){
+       history.push("/verify-otp")
+    }
+}, [userInfo,history])
+
   useEffect(() => {
     window.scrollTo(0, 0);
     if (!projectList) {

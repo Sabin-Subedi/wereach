@@ -125,7 +125,7 @@ function SignUpScreen() {
           </Formik>
         </div>
         <p className="text-center mt-5">
-          Already on Civis? <Link to="/login">Sign In</Link>
+          Already on WeReach? <Link to="/login">Sign In</Link>
         </p>
       </Col>
     </main>
