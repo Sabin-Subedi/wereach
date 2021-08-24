@@ -251,14 +251,7 @@ function ProjectScreen({ match }) {
                         </Button>
                       </LinkContainer>
 
-                      {/* <Button variant="warning">
-                        <Icon
-                          icon="fas fa-handshake-alt"
-                          size="5"
-                          color="dark"
-                        />
-                        Sponsors List
-                      </Button> */}
+                     
                       <LinkContainer
                         to={`/projects/${userInfo?.id}?project=${project?._id}#donation_list`}
                       >

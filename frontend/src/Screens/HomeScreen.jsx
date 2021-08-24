@@ -29,7 +29,7 @@ function HomeScreen() {
 
 
   useEffect(() => {
-    if(!userInfo?.emailVerified){
+    if(userInfo && !userInfo?.emailVerified){
        history.push("/verify-otp")
     }
 }, [userInfo,history])

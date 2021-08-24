@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import HomeScreen from "./Screens/HomeScreen.jsx";
 import SignInScreen from "./Screens/SignInScreen";
 import SignUpScreen from "./Screens/SignUpScreen";
 import { getUserData } from "./actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
-import { Spinner } from "react-bootstrap";
 import { getAllProjects } from "./actions/projectActions";
 import ProjectScreen from "./Screens/ProjectScreen";
 import Loader from "./components/Loader";
@@ -16,7 +15,7 @@ import useLocation from "./hooks/useLocation";
 import { useToasts } from "react-toast-notifications";
 import DiscoverScreen from "./Screens/DiscoverScreen";
 import AdminProjectScreen from "./Screens/AdminProjectScreen";
-import Avatar, { ConfigProvider } from 'react-avatar';
+import  { ConfigProvider } from 'react-avatar';
 import MyProjectScreen from "./Screens/MyProjectScreen";
 import ErrorPage from "./Screens/ErrorScreen";
 import VerifyScreen from "./Screens/VerifyScreen";
@@ -61,6 +60,7 @@ function App() {
       ) : (
         <ConfigProvider colors={['#FA8C16', '#04D182', '#1890FF', '#FFC542', '#FF6B72']}>
           <Router>
+            <Switch>
             <Route path="/login" component={SignInScreen} exact />
             <Route
               path="/create/project"
@@ -73,8 +73,9 @@ function App() {
             <Route path="/discover" component={DiscoverScreen} exact />
             <Route path="/admin/projects" component={AdminProjectScreen} exact />
             <Route path="/register" component={SignUpScreen} exact />
-            <Route path="/" component={HomeScreen} exact />
-            <Route  path='/404' component={ErrorPage}  />
+            <Route exact path="/" component={HomeScreen}  />
+            <Route  path='*' component={ErrorPage}  />
+            </Switch>
           </Router>
 
         </ConfigProvider>
