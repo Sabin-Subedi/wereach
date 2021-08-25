@@ -90,7 +90,7 @@ function ProjectScreen({ match }) {
                   <div className="d-flex align-items-center">
                   <Avatar
                 className='d-none d-lg-inline-block'
-                  name={project?.user.avatar}
+                  name={project?.user.name}
                   round
                   size="40"
                   textSizeRatio={2}

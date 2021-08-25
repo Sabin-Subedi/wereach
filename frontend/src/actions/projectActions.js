@@ -18,7 +18,7 @@ export const getAllProjects = () => async (dispatch) => {
   try {
     dispatch({ type: LIST_PROJECTS_REQUEST });
 
-    const { data } = await axios.get("/project");
+    const { data } = await axios.get("/project/verified");
 
     dispatch({
       type: LIST_PROJECTS_SUCCESS,
@@ -27,6 +27,36 @@ export const getAllProjects = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LIST_PROJECTS_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const ListAllProject = (token) => async (dispatch) => {
+  try {
+    dispatch({ type: "ADMIN_PROJECT_LIST_REQUEST" });
+
+    const { data } = await axios({
+      method: "get",
+      url: `/project`,
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+   
+    });
+
+    dispatch({
+      type: "ADMIN_PROJECT_LIST_SUCCESS",
+      payload: data.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "ADMIN_PROJECT_LIST_FAILURE",
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

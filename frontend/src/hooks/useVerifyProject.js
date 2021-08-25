@@ -26,7 +26,7 @@ function useVerifyProject() {
         autoDismiss: true,
       });
 
-    // message && history.push("/");
+    message && history.push("/admin/dashboard?filter=projects");
   }, [addToast, message, error, history]);
 
   const verifyProject = useCallback(
@@ -45,9 +45,9 @@ function useVerifyProject() {
           Authorization: `Bearer ${token}`,
         },
       })
-        .then(({ data: { data, message, project } }) => {
+        .then(({ data: { data, message, project,all } }) => {
           setMessage(message);
-          dispatch({ type: "VERIFY_PROJECT", payload: data, project: project });
+          dispatch({ type: "VERIFY_PROJECT", payload: data, project: project ,admin: all});
         })
         .finally(() => {
           setLoading(false);

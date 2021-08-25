@@ -7,7 +7,7 @@ import SignInScreen from "./Screens/SignInScreen";
 import SignUpScreen from "./Screens/SignUpScreen";
 import { getAllUser, getUserData } from "./actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProjects } from "./actions/projectActions";
+import { getAllProjects, ListAllProject } from "./actions/projectActions";
 import ProjectScreen from "./Screens/ProjectScreen";
 import Loader from "./components/Loader";
 import CreateProjectScreen from "./Screens/CreateProjectScreen";
@@ -50,8 +50,8 @@ function App() {
     const token = localStorage.getItem("token");
     if (token) {
       dispatch(getUserData(token));
+      dispatch(ListAllProject(token))
     }
-  
     dispatch(getAllProjects());
   }, [dispatch, history]);
 

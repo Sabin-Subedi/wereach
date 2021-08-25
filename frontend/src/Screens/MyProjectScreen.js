@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  Badge,
-  Col,
-  Container,
-  Table,
-} from "react-bootstrap";
+import { Badge, Button, Col, Container, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Icon from "../components/Icon";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Avatar from "react-avatar";
+import { Link } from "react-router-dom";
 
 function MyProjectScreen() {
   console.log(window.location.search);
@@ -18,7 +14,7 @@ function MyProjectScreen() {
   const { projectList } = useSelector((state) => state.projects);
 
   const filteredProject = projectList?.filter(
-    (project) => project.user._id.toString() === userInfo.id.toString()
+    (project) => project?.user?._id.toString() === userInfo?.id.toString()
   );
 
   const [radio, setRadio] = useState(
@@ -65,7 +61,7 @@ function MyProjectScreen() {
                 </div>
               </Col>
               <Col sm={9}>
-                <div className="bg-light p-4 pb-2 rounded-3">
+                {selectedProject?.openedFor?.includes("donate") && <div className="bg-light p-4 pb-2 rounded-3">
                   <h4 className="fw-normal">Latest Transaction</h4>
                   {selectedProject?.donationList?.donation?.length > 0 ? (
                     <Table hover responsive striped id="donation_list">
@@ -87,21 +83,21 @@ function MyProjectScreen() {
                                 <div className="d-flex align-items-center">
                                   <Avatar
                                     className="d-none d-lg-inline-block"
-                                    name={donation.user.name}
+                                    name={donation?.user?.name}
                                     round
                                     size="40"
                                     textSizeRatio={2}
                                   />
-                                </div>
                                 <span
                                   className="fw-bolder"
                                   style={{ marginLeft: "0.5rem" }}
                                 >
-                                  {donation.user.name}
+                                  {donation?.user?.name}
                                 </span>
+                                </div>
                               </td>
-                              <td>{donation.user.email}</td>
-                              <td>${donation.amount}</td>
+                              <td>{donation?.user?.email}</td>
+                              <td>${donation?.amount}</td>
                             </tr>
                           )
                         )}
@@ -117,68 +113,84 @@ function MyProjectScreen() {
                       <p className="fs-2">No transaction yet</p>
                     </div>
                   )}
-                </div>
+                </div>}
 
-                <div className="bg-light mt-3 p-4 pb-2 rounded-3">
-                  <h4 className="fw-normal">Interested Volunteer List</h4>
-                  {selectedProject?.volunteerList?.volunteers?.length > 0 ? (
-                    <Table id="volunteer_list">
-                      <thead>
-                        <tr>
-                          <th>S.N.</th>
-                          <th>Volunteer</th>
-                          <th>Email</th>
-                          <th>Role</th>
-                        </tr>
-                      </thead>
+                {selectedProject?.openedFor?.includes("volunteer") && (
+                  <div className="bg-light mt-3 p-4 pb-2 rounded-3">
+                    <h4 className="fw-normal">Interested Volunteer List</h4>
+                    {selectedProject?.volunteerList?.volunteers?.length > 0 ? (
+                      <Table id="volunteer_list">
+                        <thead>
+                          <tr>
+                            <th>S.N.</th>
+                            <th>Volunteer</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                          </tr>
+                        </thead>
 
-                      <tbody>
-                        {selectedProject?.volunteerList.volunteers.map(
-                          (volunteer, index) => (
-                            <tr>
-                              <td>{index + 1}</td>
-                              <td>
-                                <div className="d-flex align-items-center">
-                                  <Avatar
-                                    className="d-none d-lg-inline-block"
-                                    name={volunteer.user.name}
-                                    round
-                                    size="40"
-                                    textSizeRatio={2}
-                                  />
-                                  <span
-                                    className="fw-bolder"
-                                    style={{ marginLeft: "0.5rem" }}
-                                  >
-                                    {volunteer.user.name}
-                                  </span>
-                                </div>
-                              </td>
-                              <td>{volunteer.user.email}</td>
-                              <td>
-                                <Badge bg="primary">{volunteer.role}</Badge>
-                              </td>
-                            </tr>
-                          )
-                        )}
-                      </tbody>
-                    </Table>
-                  ) : (
-                    <div className="text-center p-4 text-secondary">
-                      <Icon
-                        icon="fal fa-person-sign"
-                        color="secondary"
-                        className="fs-lg"
-                      />
-                      <p className="fs-2">No volunteers yet.</p>
-                    </div>
-                  )}
-                </div>
+                        <tbody>
+                          {selectedProject?.volunteerList.volunteers.map(
+                            (volunteer, index) => (
+                              <tr>
+                                <td>{index + 1}</td>
+                                <td>
+                                  <div className="d-flex align-items-center">
+                                    <Avatar
+                                      className="d-none d-lg-inline-block"
+                                      name={volunteer?.user?.name}
+                                      round
+                                      size="40"
+                                      textSizeRatio={2}
+                                    />
+                                    <span
+                                      className="fw-bolder"
+                                      style={{ marginLeft: "0.5rem" }}
+                                    >
+                                      {volunteer?.user?.name}
+                                    </span>
+                                  </div>
+                                </td>
+                                <td>{volunteer?.user?.email}</td>
+                                <td>
+                                  <Badge bg="primary">{volunteer?.role}</Badge>
+                                </td>
+                              </tr>
+                            )
+                          )}
+                        </tbody>
+                      </Table>
+                    ) : (
+                      <div className="text-center p-4 text-secondary">
+                        <Icon
+                          icon="fal fa-person-sign"
+                          color="secondary"
+                          className="fs-lg"
+                        />
+                        <p className="fs-2">No volunteers yet.</p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </Col>
             </div>
           </div>
         ) : (
-          <h1>You haven't Created Any Project</h1>
+          <div className="pt-5 mt-5">
+            <div className="text-center p-4 text-secondary">
+              <Icon
+                icon="fad fa-exclamation-circle"
+                color="secondary"
+                className="fs-lg"
+              />
+              <p className="fs-2">You haven't created a project yet.</p>
+              <Link to="/create/project">
+                <Button variant="outline-success">
+                  Create Your Project Now
+                </Button>
+              </Link>
+            </div>
+          </div>
         )}
       </Container>
       <div className="mt-5">

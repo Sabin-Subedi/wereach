@@ -7,6 +7,34 @@ import Volunteer from "../models/volunteerModel.js";
 // * @acess Public
 export const getAllProjects = async (req, res) => {
   try {
+    const project = await Project.find({ isVerified: true })
+      .populate("user")
+      .populate({
+        path: "volunteerList",
+        populate: { path: "volunteers.user" },
+      })
+      .populate({
+        path: "donationList",
+        populate: { path: "donation.user" },
+      })
+      .sort({ createdAt: -1 });
+
+    if (project) {
+      return res.status(200).json({
+        success: true,
+        message: "Projects fetched successfully",
+        data: project,
+      });
+    }
+
+    res.status(400).json({ message: "Internal Error" });
+  } catch (err) {
+    res.status(400).json({ message: err.message, stack: err.stack });
+  }
+};
+
+export const getProjects = async (req, res) => {
+  try {
     const project = await Project.find()
       .populate("user")
       .populate({
@@ -35,7 +63,7 @@ export const getAllProjects = async (req, res) => {
 
 export const getAllProjectByUser = async (req, res) => {
   try {
-    const project = await Project.find({ user: req.user.id })
+    const project = await Project.find({ user: req.user.id, isVerified: true })
       .populate("user")
       .populate({
         path: "volunteerList",
@@ -235,6 +263,18 @@ export const verifyProject = async (req, res) => {
 
       await project.save();
 
+      const verifiedProjects = await Project.find({ isVerified: true })
+        .populate("user")
+        .populate({
+          path: "volunteerList",
+          populate: { path: "volunteers.user" },
+        })
+        .populate({
+          path: "donationList",
+          populate: { path: "donation.user" },
+        })
+        .sort({ createdAt: -1 });
+
       const projects = await Project.find()
         .populate("user")
         .populate({
@@ -244,13 +284,15 @@ export const verifyProject = async (req, res) => {
         .populate({
           path: "donationList",
           populate: { path: "donation.user" },
-        });
+        })
+        .sort({ createdAt: -1 });
 
       return res.status(200).json({
         success: true,
         message: "Project verified successfully",
-        data: projects,
+        data: verifiedProjects,
         project: project,
+        all: projects,
       });
     }
 

@@ -19,7 +19,7 @@ function DashboardScreen() {
   const search = window.location.search.split("=")[1];
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.user);
-  const { projectList } = useSelector((state) => state.projects);
+  const { projectList } = useSelector((state) => state.adminProjectList);
   const { userLists } = useSelector((state) => state.allUser);
   const {deleteUser} = useDeleteUser()
 

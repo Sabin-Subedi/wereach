@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Button, CardGroup, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { useHistory } from "react-router-dom";
-import { getAllProjects } from "../actions/projectActions";
 import CardBox from "../components/CardBox";
 import CategoryIconsBox from "../components/CategoryIconsBox";
 import Footer from "../components/Footer";
@@ -12,12 +11,10 @@ import NavBar from "../components/Navbar";
 import VideoModal from "../components/VideoModal";
 import useLocation from "../hooks/useLocation";
 import ScrollToTop from "react-scroll-to-top";
-import Feature from "../components/Feature";
 import FeatureBox from "../components/FeatureBox";
 
 function HomeScreen() {
   const history = useHistory();
-  const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
   const { location } = useLocation();
   const { userInfo } = useSelector((state) => state.user);

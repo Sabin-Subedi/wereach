@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { getAllUserReducer, userAuthReducer } from "./reducers/authReducers";
 import {
+  adminProjectListReducer,
   createProjectReducer,
   donationReducer,
   projectByIdReducer,
@@ -15,7 +16,8 @@ const reducer = combineReducers({
   donation: donationReducer,
   createProject: createProjectReducer,
   projectByIdList: projectByIdReducer,
-  allUser: getAllUserReducer
+  allUser: getAllUserReducer,
+  adminProjectList: adminProjectListReducer
 });
 
 const intialState = {
@@ -28,7 +30,7 @@ const middleware = [thunk];
 const store = createStore(
   reducer,
   intialState,
-  applyMiddleware(...middleware)
+  composeWithDevTools(applyMiddleware(...middleware))
 );
 
 export default store;

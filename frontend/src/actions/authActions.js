@@ -87,9 +87,7 @@ export const getAllUser = (token) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_USERS_REQUEST });
 
-    const config = {
-      Authorization: `Bearer ${token}`,
-    };
+  
 
     const { data } = await axios({
       method: "get",

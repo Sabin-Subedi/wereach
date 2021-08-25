@@ -28,6 +28,24 @@ export const projectListReducer = (state = { projectList: [] }, action) => {
   }
 };
 
+export const adminProjectListReducer = (
+  state = { projectList: [] },
+  action
+) => {
+  switch (action.type) {
+    case "ADMIN_PROJECT_LIST_REQUEST":
+      return { loading: true };
+    case "ADMIN_PROJECT_LIST_SUCCESS":
+      return { loading: false, projectList: action.payload };
+    case "VERIFY_PROJECT":
+      return { loading: false, projectList: action.admin };
+    case "ADMIN_PROJECT_LIST_FAILURE":
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 export const projectByIdReducer = (state = {}, action) => {
   switch (action.type) {
     case PROJECT_BY_ID_REQUEST:
