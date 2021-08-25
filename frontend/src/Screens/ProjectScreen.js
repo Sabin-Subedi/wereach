@@ -66,11 +66,13 @@ function ProjectScreen({ match }) {
           <Row xs={1} md={2} className="g-4">
             <Col md={8}>
               <Card>
-                <div  className="px-4 py-2 row align-items-center">
-                  <div className='col-11 mb-2'>
-                    <h2 className="display-6 mb-1 ">
-                      {project?.title}
-                    </h2>
+                <div className="px-4 py-2 row align-items-center">
+                  <div
+                    className={`${
+                      project?.videoLink ? "col-11" : "col-12"
+                    } mb-2`}
+                  >
+                    <h2 className="display-6 mb-1 ">{project?.title}</h2>
                     <span className="text-secondary">
                       <Badge bg="success" className="me-2">
                         {project?.category}
@@ -78,23 +80,29 @@ function ProjectScreen({ match }) {
                       CreatedAt: {moment(project?.createdAt).format("LL")}
                     </span>
                   </div>
-                  <div className="col-1">
-                  <a href={project?.videoLink} target="_blank" rel="noreferrer" >
-                    <Icon icon="fab fa-youtube" color="danger" size={2} />
-                  </a>
-                  </div>
+                  {project?.videoLink && (
+                    <div className="col-1">
+                      <a
+                        href={project?.videoLink}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <Icon icon="fab fa-youtube" color="danger" size={2} />
+                      </a>
+                    </div>
+                  )}
                 </div>
                 <Card.Img src={project?.imageLink} alt="" />
                 <Card.Body>
                   <p>{project?.description}</p>
                   <div className="d-flex align-items-center">
-                  <Avatar
-                className='d-none d-lg-inline-block'
-                  name={project?.user.name}
-                  round
-                  size="40"
-                  textSizeRatio={2}
-                />
+                    <Avatar
+                      className="d-none d-lg-inline-block"
+                      name={project?.user.name}
+                      round
+                      size="40"
+                      textSizeRatio={2}
+                    />
                     <div className="ms-2">
                       <p className="mb-0  fs-6 fw-normal text-secondary" sty>
                         Created By
@@ -260,7 +268,6 @@ function ProjectScreen({ match }) {
                         </Button>
                       </LinkContainer>
 
-                     
                       <LinkContainer
                         to={`/projects/${userInfo?.id}?project=${project?._id}#donation_list`}
                       >
@@ -297,7 +304,7 @@ function ProjectScreen({ match }) {
           data={project}
           community={community}
         />
-         <SponsorModal
+        <SponsorModal
           show={sponsorModalShow}
           id={projectId}
           onHide={() => setSponsorModalShow(false)}

@@ -271,7 +271,7 @@ function CreateProjectScreen() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.videoLink}
-                      required
+            
                     />
                     <p className="text-danger">
                       {errors.videoLink &&
