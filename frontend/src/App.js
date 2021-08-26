@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router
 import HomeScreen from "./Screens/HomeScreen.jsx";
 import SignInScreen from "./Screens/SignInScreen";
 import SignUpScreen from "./Screens/SignUpScreen";
-import { getAllUser, getUserData } from "./actions/authActions";
+import {  getUserData } from "./actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProjects, ListAllProject } from "./actions/projectActions";
 import ProjectScreen from "./Screens/ProjectScreen";
@@ -24,6 +24,7 @@ import AdminProjectView from "./Screens/AdminProjectView";
 import AboutUsScreen from "./Screens/AboutUsScreen";
 import PrivacyScreen from "./Screens/PrivacyScreen";
 import TermsScreen from "./Screens/TermsScreen";
+import ContactScreen from "./Screens/ContactScreen";
 
 function App() {
   useLocation();
@@ -74,6 +75,7 @@ function App() {
             />
             <Route exact path="/admin/dashboard" component={DashboardScreen}  />
             <Route  path='/verify-otp' component={VerifyScreen} exact />
+            <Route  path='/contact-us' component={ContactScreen} exact />
             <Route  path='/privacy-and-policy' component={PrivacyScreen} exact />
             <Route  path='/terms-and-condition' component={TermsScreen} exact />
             <Route  path='/about-us' component={AboutUsScreen} exact />
