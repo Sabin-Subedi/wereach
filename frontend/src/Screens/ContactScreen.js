@@ -1,10 +1,14 @@
 import { Formik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Col, Container, Form } from "react-bootstrap";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar";
 
 function ContactScreen() {
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
+    
   return (
     <>
       <NavBar />
