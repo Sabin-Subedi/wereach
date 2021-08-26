@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Navbar, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import ScrollToTop from "react-scroll-to-top";
 import CardBox from "../components/CardBox";
+import Footer from "../components/Footer";
 import Icon from "../components/Icon";
 import NavBar from "../components/Navbar";
 import { category, countryList, openedFor } from "../constants/data";
@@ -74,6 +76,7 @@ function DiscoverScreen() {
     <>
       <NavBar />
       <Container fluid='md | lg' className="mt-5 py-5">
+      <ScrollToTop color="#198754" smooth />
         <Row>
           <Col sm={4} >
             <div className="bg-tan p-4 rounded-3 mb-4">
@@ -194,6 +197,7 @@ function DiscoverScreen() {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </>
   );
 }

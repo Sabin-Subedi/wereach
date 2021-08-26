@@ -41,8 +41,8 @@ function Footer() {
               <LinkContainer to="/how-it-works">
                 <p className="mb-1 fs-6 fw-light pointer">How it works</p>
               </LinkContainer>
-              <LinkContainer to="/company-vision">
-                <p className="mb-1 fs-6 fw-light pointer">Our Vision</p>
+              <LinkContainer to="/about-us#team">
+                <p className="mb-1 fs-6 fw-light pointer">Our Team</p>
               </LinkContainer>
             </Col>
 

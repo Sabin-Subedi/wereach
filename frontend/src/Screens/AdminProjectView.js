@@ -18,6 +18,7 @@ import { projectById } from "../actions/projectActions";
 import Avatar from "react-avatar";
 import useVerifyProject from "../hooks/useVerifyProject";
 import { useHistory } from "react-router-dom";
+import ScrollToTop from "react-scroll-to-top";
 
 function AdminProjectView({ match }) {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function AdminProjectView({ match }) {
     <>
       <NavBar />
       <Container>
+      <ScrollToTop color="#198754" smooth />
         <div className="py-5 mt-5">
           <Row xs={1} md={2} className="g-4">
             <Col md={8}>

@@ -262,6 +262,42 @@ export const countryList = [
   "Åland Islands",
 ];
 
+export const Teams = Object.freeze([
+  {
+    name: "Sabin Subedi",
+    photo:
+      "https://storage.googleapis.com/hello-de203.appspot.com/image-1623674681612.jpg",
+    title: "Lead Developer",
+    github: 'https://github.com/Sabin-Subedi',
+    linkedin: 'https://www.linkedin.com/in/sabin-subedi-69517519a/',
+    instagram: 'https://www.instagram.com/dev_sabin/'
+  },
+  {
+    name: "Nishu Shrestha",
+    photo:
+      "https://storage.googleapis.com/hello-de203.appspot.com/image-1625038790085.jpg",
+    title: "UI/UX Engineer",
+  },
+  {
+    name: "Pratik Shrestha",
+    photo:
+      "https://storage.googleapis.com/hello-de203.appspot.com/image-1625038790085.jpg",
+    title: "Data Analyst",
+  },
+  {
+    name: "Saiman Adhikari",
+    photo:
+      "https://storage.googleapis.com/hello-de203.appspot.com/image-1625161866919.jpg",
+    title: "Creative Head",
+  },
+  {
+    name: "Pranish Khanal",
+    photo:
+      "https://storage.googleapis.com/hello-de203.appspot.com/image-1625163088957.jpg",
+    title: "Project Manager",
+  },
+]);
+
 export const categoryWithIcon = [
   {
     icon: "education.svg",
@@ -349,5 +385,4 @@ export const features = Object.freeze([
     description:
       "WeREACH is trusted around the world for its simple, reliable platform.",
   },
- 
 ]);

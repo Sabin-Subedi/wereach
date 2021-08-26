@@ -92,7 +92,7 @@ function DashboardScreen() {
 
                       <tbody>
                         {projectList?.map((project, index) => (
-                          <LinkContainer to={`/admin/project/${project._id}`}>
+                          <LinkContainer to={`/admin/project/${project?._id}`}>
                             <tr className="pointer">
                               <td
                                 className="text-truncate"
@@ -104,13 +104,13 @@ function DashboardScreen() {
                                 style={{ maxWidth: "12rem" }}
                                 className="text-truncate"
                               >
-                                {project.title}
+                                {project?.title}
                               </td>
                               <td>
                                 <div className="d-flex align-items-center text-truncate">
                                   <Avatar
                                     className="d-none d-lg-inline-block"
-                                    name={project.user.name}
+                                    name={project?.user?.name}
                                     round
                                     size="40"
                                     textSizeRatio={2}
@@ -119,12 +119,12 @@ function DashboardScreen() {
                                     className="fw-bolder"
                                     style={{ marginLeft: "0.5rem" }}
                                   >
-                                    {project.user.name}
+                                    {project?.user?.name}
                                   </span>
                                 </div>
                               </td>
                               <td>
-                                <Badge bg="primary">{project.category}</Badge>
+                                <Badge bg="primary">{project?.category}</Badge>
                               </td>
                               <td>
                                 {project?.isVerified ? (

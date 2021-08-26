@@ -137,3 +137,11 @@ background-position: center;
 .link{
   text-decoration: none;
 }
+
+.icon_hover{
+  transition: all ease 0.2s;
+}
+
+.icon_hover:hover{
+  color: #198754 !important;
+}
