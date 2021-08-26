@@ -276,7 +276,7 @@ export const Teams = Object.freeze([
   {
     name: "Nishu Shrestha",
     photo:
-      "https://storage.googleapis.com/hello-de203.appspot.com/image-1625038790085.jpg",
+      "https://storage.googleapis.com/civism-1d244.appspot.com/image-1629991801002.jpg",
     title: "UI/UX Engineer",
     github: "",
     linkedin: "https://www.linkedin.com/in/nishu-shrestha-625b2b1b3/",
