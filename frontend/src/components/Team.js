@@ -5,7 +5,7 @@ import Icon from "./Icon";
 
 function Team() {
   return (
-    <Container id='team' className="py-5 mt-5">
+    <Container id="team" className="py-5 mt-5">
       <h2 className="text-center mb-5 display-5">Our Awesome Team</h2>
       <Row xs={1} sm={2} lg={3} className="justify-content-center">
         {Teams.map((item) => (
@@ -19,30 +19,46 @@ function Team() {
                 </p>
               </div>
               <div>
-                <a href={item.instagram} target="_blank" rel="noreferrer">
-                  <Icon
-                    className="pointer icon_hover"
-                    icon="fab fa-instagram"
-                    color="secondary"
-                    size="4"
-                  />
-                </a>
-                <a href={item.linkedin} target="_blank" rel="noreferrer">
-                  <Icon
-                    className="pointer icon_hover"
-                    icon="fab fa-linkedin"
-                    color="secondary"
-                    size="4"
-                  />
-                </a>
-                <a href={item.github} target="_blank" rel="noreferrer">
-                  <Icon
-                    className="pointer icon_hover"
-                    icon="fab fa-github"
-                    color="secondary"
-                    size="4"
-                  />
-                </a>
+                {item.instagram && (
+                  <a href={item.instagram} target="_blank" rel="noreferrer">
+                    <Icon
+                      className="pointer icon_hover"
+                      icon="fab fa-instagram"
+                      color="secondary"
+                      size="4"
+                    />
+                  </a>
+                )}
+                {item.linkedin && (
+                  <a href={item.linkedin} target="_blank" rel="noreferrer">
+                    <Icon
+                      className="pointer icon_hover"
+                      icon="fab fa-linkedin"
+                      color="secondary"
+                      size="4"
+                    />
+                  </a>
+                )}
+                {item.github && (
+                  <a href={item.github} target="_blank" rel="noreferrer">
+                    <Icon
+                      className="pointer icon_hover"
+                      icon="fab fa-github"
+                      color="secondary"
+                      size="4"
+                    />
+                  </a>
+                )}
+                {item.web && (
+                  <a href={item.web} target="_blank" rel="noreferrer">
+                    <Icon
+                      className="pointer icon_hover"
+                      icon="far fa-globe"
+                      color="secondary"
+                      size="4"
+                    />
+                  </a>
+                )}
               </div>
             </div>
           </Col>

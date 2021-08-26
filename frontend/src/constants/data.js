@@ -268,33 +268,46 @@ export const Teams = Object.freeze([
     photo:
       "https://storage.googleapis.com/hello-de203.appspot.com/image-1623674681612.jpg",
     title: "Lead Developer",
-    github: 'https://github.com/Sabin-Subedi',
-    linkedin: 'https://www.linkedin.com/in/sabin-subedi-69517519a/',
-    instagram: 'https://www.instagram.com/dev_sabin/'
+    github: "https://github.com/Sabin-Subedi",
+    linkedin: "https://www.linkedin.com/in/sabin-subedi-69517519a/",
+    instagram: "https://www.instagram.com/dev_sabin/",
+    web: "https://sabinsubedi.tech"
   },
   {
     name: "Nishu Shrestha",
     photo:
       "https://storage.googleapis.com/hello-de203.appspot.com/image-1625038790085.jpg",
     title: "UI/UX Engineer",
+    github: "",
+    linkedin: "https://www.linkedin.com/in/nishu-shrestha-625b2b1b3/",
+    instagram: "https://www.instagram.com/ni.shu8343/",
   },
   {
     name: "Pratik Shrestha",
     photo:
       "https://storage.googleapis.com/hello-de203.appspot.com/image-1625038790085.jpg",
     title: "Data Analyst",
+    github: "",
+    linkedin: "https://www.linkedin.com/in/pratik-shrestha-3022551b2/",
+    instagram: "https://www.instagram.com/pratikk._45/"
   },
   {
     name: "Saiman Adhikari",
     photo:
       "https://storage.googleapis.com/hello-de203.appspot.com/image-1625161866919.jpg",
     title: "Creative Head",
+    github: "",
+    linkedin: "https://www.linkedin.com/in/saiman-adhikari-09a425202/",
+    instagram: "https://www.instagram.com/saiman.adhikari17/"
   },
   {
     name: "Pranish Khanal",
     photo:
       "https://storage.googleapis.com/hello-de203.appspot.com/image-1625163088957.jpg",
     title: "Project Manager",
+    github: "",
+    linkedin: "https://www.linkedin.com/in/pranish-khanal-5799721b2/",
+    instagram: "https://www.instagram.com/pranis.khanal/"
   },
 ]);
 

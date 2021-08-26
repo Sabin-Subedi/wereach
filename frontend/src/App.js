@@ -22,6 +22,8 @@ import VerifyScreen from "./Screens/VerifyScreen";
 import DashboardScreen from "./Screens/DashboardScreen";
 import AdminProjectView from "./Screens/AdminProjectView";
 import AboutUsScreen from "./Screens/AboutUsScreen";
+import PrivacyScreen from "./Screens/PrivacyScreen";
+import TermsScreen from "./Screens/TermsScreen";
 
 function App() {
   useLocation();
@@ -72,6 +74,8 @@ function App() {
             />
             <Route exact path="/admin/dashboard" component={DashboardScreen}  />
             <Route  path='/verify-otp' component={VerifyScreen} exact />
+            <Route  path='/privacy-and-policy' component={PrivacyScreen} exact />
+            <Route  path='/terms-and-condition' component={TermsScreen} exact />
             <Route  path='/about-us' component={AboutUsScreen} exact />
             <Route path="/project/:id" component={ProjectScreen} exact />
             <Route path="/projects/:id" component={MyProjectScreen} exact />
