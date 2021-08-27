@@ -3,12 +3,17 @@ import React, { useEffect } from "react";
 import { Button, Col, Container, Form } from "react-bootstrap";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar";
+import useSendMessage from "../hooks/useSendMessage";
 
 function ContactScreen() {
+    const {sendMessage,success,loading} = useSendMessage()
+
     useEffect(() => {
         window.scrollTo(0,0)
     }, [])
-    
+
+ 
+
   return (
     <>
       <NavBar />
@@ -42,11 +47,13 @@ function ContactScreen() {
                   }
                   return errors;
                 }}
-                onSubmit={(values, { setSubmitting }) => {
+                onSubmit={(values, { setSubmitting,resetForm }) => {
                   setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                    sendMessage(values,resetForm)
+                    
                     setSubmitting(false);
                   }, 400);
+                  
                 }}
               >
                 {({
@@ -59,7 +66,7 @@ function ContactScreen() {
                   isSubmitting,
                   /* and other goodies */
                 }) => (
-                  <Form onSubmit={handleSubmit}>
+                  <Form onSubmit={handleSubmit} >
                     <Form.Group className="mt-3">
                       <Form.Label>Full Name</Form.Label>
                       <Form.Control
@@ -112,10 +119,10 @@ function ContactScreen() {
                         type="submit"
                         variant='success'
                         disabled={
-                          isSubmitting || Object.keys(errors).length > 0
+                          isSubmitting || Object.keys(errors).length > 0 || loading
                         }
                       >
-                        Submit
+                       {loading ?  'Sending Your Message...' : 'Submit'}
                       </Button>
                     </div>
                   </Form>

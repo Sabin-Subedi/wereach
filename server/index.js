@@ -6,6 +6,7 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js"
+import messageRoutes from "./routes/messageRoutes.js"
 import { sendEmail } from "./utils/email.js";
 
 
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use("/auth/", authRoutes);
 app.use("/project/", projectRoutes);
 app.use('/upload', uploadRoutes)
+app.use('/message', messageRoutes)
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
