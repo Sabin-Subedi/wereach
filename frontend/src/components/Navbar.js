@@ -17,42 +17,38 @@ function NavBar() {
 
   return (
     <Navbar className="mb-5" bg="white" expand="lg" fixed="top">
-      <Container fluid='md'>
+      <Container fluid="md">
         <LinkContainer to="/">
           <Navbar.Brand className=" space_letter text-success text-center text-uppercase mb-0 p-0">
             <img src="/logo.svg" alt="WEREACH" />
           </Navbar.Brand>
         </LinkContainer>
 
-
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className='d-lg-none' />
-        <Navbar.Collapse id="basic-navbar-nav" className='d-lg-none' >
-         
-        <Nav className="ms-auto align-middle ">
-          <LinkContainer to="/create/project">
-            <Button variant="outline-success mx-2 ">Start Project</Button>
-          </LinkContainer>
-          <NavDropdown
-            variant="success"
-            
-            title="Projects"
-            id="basic-nav-dropdown"
-            align="end"
-          >
-            {category &&
-              category.map((cate) => (
-                <LinkContainer
-                  to={`/discover?category=${cate
-                    .replace(/\s+/g, "")
-                    .toLowerCase()}`}
-                >
-                  <NavDropdown.Item>{cate}</NavDropdown.Item>
-                </LinkContainer>
-              ))}
-          </NavDropdown>
-          {userInfo ? (
-            <>
-             
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="d-lg-none" />
+        <Navbar.Collapse id="basic-navbar-nav" className="d-lg-none">
+          <Nav className="ms-auto align-middle ">
+            <LinkContainer to="/create/project">
+              <Button variant="outline-success mx-2 ">Start Project</Button>
+            </LinkContainer>
+            <NavDropdown
+              variant="success"
+              title="Projects"
+              id="basic-nav-dropdown"
+              align="end"
+            >
+              {category &&
+                category.map((cate) => (
+                  <LinkContainer
+                    to={`/discover?category=${cate
+                      .replace(/\s+/g, "")
+                      .toLowerCase()}`}
+                  >
+                    <NavDropdown.Item>{cate}</NavDropdown.Item>
+                  </LinkContainer>
+                ))}
+            </NavDropdown>
+            {userInfo ? (
+              <>
                 {userInfo.isAdmin && (
                   <NavDropdown
                     className="text-whiterounded-circle text-white dropdown"
@@ -78,13 +74,19 @@ function NavBar() {
                   </NavDropdown>
                 )}
 
+                <LinkContainer to={`/about-us`}>
+                  <Nav.Link className="pointer">About Us</Nav.Link>
+                </LinkContainer>
+
                 <LinkContainer to={`/projects/${userInfo?.id}`}>
                   <Nav.Link className="pointer">My Projects</Nav.Link>
                 </LinkContainer>
 
-                <Nav.Link className="align-middle mb-0 d-none d-lg-inline-block">{userInfo.name}</Nav.Link>
+                <Nav.Link className="align-middle mb-0 d-none d-lg-inline-block">
+                  {userInfo.name}
+                </Nav.Link>
                 <Avatar
-                className='d-none d-lg-inline-block'
+                  className="d-none d-lg-inline-block"
                   name={userInfo.name}
                   round
                   size="40"
@@ -100,26 +102,26 @@ function NavBar() {
                     <i className="fas fa-sign-out-alt me-2"></i>Logout
                   </NavDropdown.Item>
                 </NavDropdown>
-            
-                <Nav.Link className='d-lg-none' onClick={logoutHandler}>
-                    <i className="fas fa-sign-out-alt me-2"></i>Logout
-                  </Nav.Link>
-            </>
-          ) : (
-            <>
-              <LinkContainer to="/login">
-                <Nav.Item className="mx-2 d-flex align-items-center pointer">
-                  Sign in
-                </Nav.Item>
-              </LinkContainer>
-              <Link to="/register">
-                <Button className="mx-2" variant="outline-success">
-                  Sign Up
-                </Button>
-              </Link>
-            </>
-          )}
-        </Nav>
+
+                <Nav.Link className="d-lg-none" onClick={logoutHandler}>
+                  <i className="fas fa-sign-out-alt me-2"></i>Logout
+                </Nav.Link>
+              </>
+            ) : (
+              <>
+                <LinkContainer to="/login">
+                  <Nav.Item className="mx-2 d-flex align-items-center pointer">
+                    Sign in
+                  </Nav.Item>
+                </LinkContainer>
+                <Link to="/register">
+                  <Button className="mx-2" variant="outline-success">
+                    Sign Up
+                  </Button>
+                </Link>
+              </>
+            )}
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

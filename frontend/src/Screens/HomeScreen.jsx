@@ -51,7 +51,7 @@ function HomeScreen() {
           <Container fluid='md'>
             <div className="hero_content position-relative mt-5">
               <h1>
-                Be the part of the change in society involving in the projects
+                Be a part of the change in society involving in the projects
                 near you.
               </h1>
               <p className="fs-4 fw-light text-muted">Get Started Today</p>
